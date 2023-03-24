@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Result</h1>
+    <h4>Encoded message: {{ message }}</h4>
+    
+       
+        
+        {% if(msg=="ok")%}
+         <img src="{{ img_path }}" alt="Result image" height="50%" width="50%">
+        {% else %}
+         <div>Error: {{ msg }}</div>
+        {% endif %}
+{% endblock content %}

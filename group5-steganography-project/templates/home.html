@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="col">
+            <h1>Final Year Project</h1>
+            <img src="https://www.wattlecorp.com/wp-content/uploads/2020/10/Top-3-Steganography-Tools.jpg"
+             width="500" 
+             height="300"/>
+            <br></br>
+            <ul>
+            <p><li> <a href="{{ url_for('encode') }}">Encode</a> Click Here to hide a message in your image.</li></p>
+            <p><li> <a href="{{ url_for('decode') }}">Decode</a> page in order to find the secret message in your image.</li> </p>
+            </ul>
+        </div>
+    </div>
+{% endblock content %}
