@@ -62,11 +62,11 @@ def create_image(message, path) -> None:
 
 
 
-def decode_image(path):
-    """Decode hidden text from image
+def decode_image(path, output_path):
+    """Decode hidden text from image and save it to a file
 
     :param path: path to image
-    :return: decoded secret message
+    :param output_path: path to save the decoded text file
     """
 
     img = Image.open(path)
@@ -84,5 +84,9 @@ def decode_image(path):
     bytes_l = [int("".join(map(str, bits[i:i + 8])), 2) for i in range(0, len(bits), 8)]
     decoded_message = ''.join(map(chr, bytes_l))
     img.close()
+
+    # save decoded message to file
+    with open(output_path, 'w') as f:
+        f.write(decoded_message)
 
     return decoded_message
