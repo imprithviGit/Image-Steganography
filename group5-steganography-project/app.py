@@ -1,6 +1,7 @@
+# -*- coding: utf-8 -*-
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, send_from_directory, request
 from main import create_image, decode_image
 from werkzeug.utils import secure_filename
 
@@ -80,13 +81,18 @@ def decode():
         path = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
         image.save(path)
 
-        # STEGANOGRAPHY
+        # DECODE STEGANOGRAPHIC MESSAGE
+        output_path = os.path.join(app.config['UPLOAD_FOLDER'], 'decoded_message.txt')
+        decode_image(path, output_path)
 
-        secret = decode_image(path)
-        return render_template('result_decode.html', secret=secret)
+        return render_template('result_decode.html')
 
     return render_template('decode.html')
 
+@app.route('/download/<filename>')
+def download(filename):
+    directory = app.config['UPLOAD_FOLDER']
+    return send_from_directory(directory, filename, as_attachment=True)
 
 if __name__ == '__main__':
     app.run()
