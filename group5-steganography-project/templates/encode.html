@@ -1,22 +1,104 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Encode</h1>
-    <form method=post enctype=multipart/form-data action="{{ url_for('encode') }}">
+    <div class="container">
+        <h1 class="title">Encode</h1>
+        <form method="post" enctype="multipart/form-data" action="{{ url_for('encode') }}" class="form">
+            <div class="form-group">
+                <label for="secret_message">Select text file:</label>
+                <input type="file" id="file" name="file" accept=".txt" class="form-control-file">
+            </div>
 
-        
+            <div class="form-group">
+                <label for="img">Select image:</label>
+                <input type="file" id="image" name="image" accept="image/*" class="form-control-file">
+            </div>
 
-        
-            <label for="secret_message">Select text file:</label>
-            <input type="file" id="file" name="file" accept=".txt">
-        
+            <div class="form-group">
+                <p>Select color channels:</p>
+                <div class="form-check">
+                    <input type="radio" id="red" name="color" value="red" checked class="form-check-input">
+                    <label for="red" class="form-check-label">Red</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" id="green" name="color" value="green" class="form-check-input">
+                    <label for="green" class="form-check-label">Green</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" id="blue" name="color" value="blue" class="form-check-input">
+                    <label for="blue" class="form-check-label">Blue</label>
+                </div>
+            </div>
 
-        <label for="img">Select image:</label>
-        <input type="file" id="image" name="image" accept="image/*">
+            <button type="submit" class="btn btn-primary">Encode</button>
+        </form>
 
-        <input type="submit">
+        <p class="note">Please remember: you can only use images in .PNG format!</p>
+    </div>
 
-    </form>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+            font-family: Arial, sans-serif;
+        }
 
-    <small>Please remember: you can use only images in .PNG format!</small>
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control-file {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        .form-check-input {
+            margin-right: 10px;
+        }
+
+        .note {
+            margin-top: 20px;
+            text-align: center;
+            font-style: italic;
+            color: #868e96;
+        }
+
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+            background-color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+    </style>
 {% endblock content %}
