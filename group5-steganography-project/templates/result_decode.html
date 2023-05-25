@@ -1,4 +1,32 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
 {% block content %}
-    <p>Decoded secret message: {{ secret }}</p>
-{% endblock content %}
+
+<h2>Decoded message:</h2>
+<p>{{ secret }}</p>
+
+<div class="download-box">
+    <a href="{{ url_for('download', filename='decoded_message.txt') }}">Download decoded message</a>
+</div>
+
+{% endblock %}
+
+{% block styles %}
+<style>
+    .download-box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    .download-box a {
+        color: #333;
+        text-decoration: none;
+    }
+
+    .download-box a:hover {
+        color: #666;
+    }
+</style>
+{% endblock %}
